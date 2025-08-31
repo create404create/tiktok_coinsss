@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coin Shop</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Username Section -->
+    <div class="username-section">
+      <input type="text" id="username" placeholder="Enter your username">
+      <button onclick="setUsername()">Start</button>
+    </div>
+
+    <!-- Balance Display -->
+    <div id="balanceSection" class="hidden">
+      <h2>Welcome, <span id="displayUsername"></span></h2>
+      <p>Current Balance: <span id="coinBalance">0</span> Coins</p>
+    </div>
+
+    <!-- Coin Shop -->
+    <div id="coinShop" class="hidden">
+      <h3>Select Coins</h3>
+      <div class="coins">
+        <div class="coin-box" onclick="purchaseCoins(30)">30 Coins – $0.34</div>
+        <div class="coin-box" onclick="purchaseCoins(100)">100 Coins – $1.15</div>
+        <div class="coin-box" onclick="purchaseCoins(500)">500 Coins – $5.50</div>
+        <div class="coin-box" onclick="purchaseCoins(1000)">1000 Coins – $10.99</div>
+      </div>
+
+      <!-- Card Details -->
+      <div class="card-section">
+        <input type="text" placeholder="Card Number">
+        <input type="text" placeholder="Expiry Date (MM/YY)">
+        <input type="text" placeholder="CVV">
+      </div>
+      <button onclick="processPurchase()">Purchase</button>
+    </div>
+  </div>
+
+  <!-- Loading + Success -->
+  <div id="loadingOverlay" class="overlay hidden">
+    <div class="spinner"></div>
+    <p id="loadingText">Processing your purchase...</p>
+  </div>
+  <div id="successOverlay" class="overlay hidden">
+    <div class="checkmark">✔</div>
+    <p>Purchase Successful!</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
