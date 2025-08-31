@@ -1,49 +1,33 @@
-let selectedCoins = 0;
-let currentBalance = 0;
+let currentUsername = "";
+let coinBalance = 0;
 
-// Username set
+// Set username and show coin balance section
 function setUsername() {
-  const username = document.getElementById("username").value.trim();
-  if (username === "") {
-    alert("Please enter a username!");
+  const input = document.getElementById("usernameInput").value.trim();
+  if (input === "") {
+    alert("Please enter a username.");
     return;
   }
-  document.querySelector(".username-section").classList.add("hidden");
-  document.getElementById("balanceSection").classList.remove("hidden");
-  document.getElementById("coinShop").classList.remove("hidden");
-  document.getElementById("displayUsername").textContent = username;
+  currentUsername = input;
+  document.getElementById("displayUsername").innerText = currentUsername;
+  document.getElementById("userInfo").style.display = "block";
+  document.getElementById("coinsSection").style.display = "block";
 }
 
-// Select coins
-function purchaseCoins(amount) {
-  selectedCoins = amount;
-  alert(amount + " coins selected!");
+// Add coins to balance
+function buyCoins(amount) {
+  coinBalance += amount;
+  document.getElementById("coinBalance").innerText = coinBalance;
 }
 
-// Process purchase
-function processPurchase() {
-  if (selectedCoins === 0) {
-    alert("Please select coin package first!");
+// Buy custom coins
+function buyCustomCoins() {
+  const customAmount = parseInt(document.getElementById("customCoins").value);
+  if (isNaN(customAmount) || customAmount <= 0) {
+    alert("Enter a valid coin amount.");
     return;
   }
-
-  // Show loading
-  document.getElementById("loadingOverlay").classList.remove("hidden");
-  document.getElementById("loadingText").textContent = "Processing your purchase...";
-
-  setTimeout(() => {
-    document.getElementById("loadingOverlay").classList.add("hidden");
-    document.getElementById("successOverlay").classList.remove("hidden");
-
-    // Update balance
-    currentBalance += selectedCoins;
-    document.getElementById("coinBalance").textContent = currentBalance;
-
-    // Reset selected coins
-    selectedCoins = 0;
-
-    setTimeout(() => {
-      document.getElementById("successOverlay").classList.add("hidden");
-    }, 2000);
-  }, 2000);
+  coinBalance += customAmount;
+  document.getElementById("coinBalance").innerText = coinBalance;
+  document.getElementById("customCoins").value = "";
 }
