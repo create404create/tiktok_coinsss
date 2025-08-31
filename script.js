@@ -1,35 +1,33 @@
-let currentUsername = "";
-let coinBalance = 0;
+let selectedCoins = null;
 
-// Set username
-function setUsername() {
-  const input = document.getElementById("usernameInput").value.trim();
-  if (input === "") {
-    alert("Please enter a username.");
+document.querySelectorAll(".coin-box").forEach(box => {
+  box.addEventListener("click", () => {
+    document.querySelectorAll(".coin-box").forEach(b => b.classList.remove("active"));
+    box.classList.add("active");
+    selectedCoins = box.dataset.coins;
+  });
+});
+
+document.getElementById("purchaseBtn").addEventListener("click", () => {
+  const cardNumber = document.getElementById("cardNumber").value.trim();
+  const expiry = document.getElementById("expiry").value.trim();
+  const cvv = document.getElementById("cvv").value.trim();
+
+  if (!selectedCoins) {
+    alert("Please select a coin package!");
     return;
   }
-  currentUsername = input;
-  document.getElementById("displayUsername").innerText = currentUsername;
-  document.getElementById("userInfo").style.display = "block";
-  document.getElementById("coinsSection").style.display = "block";
-}
 
-// Buy coins
-function buyCoins(amount) {
-  coinBalance += amount;
-  document.getElementById("coinBalance").innerText = coinBalance;
-  alert(`Purchased ${amount} coins successfully!`);
-}
-
-// Custom buy
-function buyCustomCoins() {
-  const customAmount = parseInt(document.getElementById("customCoins").value);
-  if (isNaN(customAmount) || customAmount <= 0) {
-    alert("Enter a valid coin amount.");
+  if (cardNumber.length !== 16 || expiry.length !== 5 || cvv.length !== 3) {
+    alert("Please enter valid card details!");
     return;
   }
-  coinBalance += customAmount;
-  document.getElementById("coinBalance").innerText = coinBalance;
-  alert(`Purchased ${customAmount} coins successfully!`);
-  document.getElementById("customCoins").value = "";
-}
+
+  document.getElementById("loader").style.display = "block";
+  document.getElementById("successMessage").style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("loader").style.display = "none";
+    document.getElementById("successMessage").style.display = "block";
+  }, 2000); // 2 sec loading
+});
