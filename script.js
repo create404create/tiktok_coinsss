@@ -1,7 +1,7 @@
 let currentUsername = "";
 let coinBalance = 0;
 
-// Set username and show coin balance section
+// Set username
 function setUsername() {
   const input = document.getElementById("usernameInput").value.trim();
   if (input === "") {
@@ -14,13 +14,14 @@ function setUsername() {
   document.getElementById("coinsSection").style.display = "block";
 }
 
-// Add coins to balance
+// Buy coins
 function buyCoins(amount) {
   coinBalance += amount;
   document.getElementById("coinBalance").innerText = coinBalance;
+  alert(`Purchased ${amount} coins successfully!`);
 }
 
-// Buy custom coins
+// Custom buy
 function buyCustomCoins() {
   const customAmount = parseInt(document.getElementById("customCoins").value);
   if (isNaN(customAmount) || customAmount <= 0) {
@@ -29,5 +30,6 @@ function buyCustomCoins() {
   }
   coinBalance += customAmount;
   document.getElementById("coinBalance").innerText = coinBalance;
+  alert(`Purchased ${customAmount} coins successfully!`);
   document.getElementById("customCoins").value = "";
 }
