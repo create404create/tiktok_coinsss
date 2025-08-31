@@ -3,38 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coin Shop</title>
+  <title>TikTok Coin Shop (Demo)</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Fake Coin Shop</h1>
+    <h1>TikTok Coin Shop (Demo)</h1>
 
-    <!-- Username Input -->
-    <div class="username-section">
-      <input type="text" id="usernameInput" placeholder="Enter your username">
-      <button onclick="setUsername()">Enter</button>
-    </div>
-
-    <!-- User Info -->
-    <div class="user-info" id="userInfo" style="display: none;">
-      <p><strong>Username:</strong> <span id="displayUsername"></span></p>
-      <p><strong>Coin Balance:</strong> <span id="coinBalance">0</span></p>
+    <!-- Username Section -->
+    <div class="card">
+      <h2>Enter TikTok Username</h2>
+      <p>Start by entering the username (e.g. @your_username)</p>
+      <input type="text" id="usernameInput" placeholder="Enter username">
+      <button onclick="setUsername()">Continue</button>
     </div>
 
     <!-- Coins Section -->
-    <div class="coins-section" id="coinsSection" style="display: none;">
-      <h2>Buy Coins</h2>
-      <div class="coin-box" onclick="buyCoins(30)">30 Coins – $0.34</div>
-      <div class="coin-box" onclick="buyCoins(100)">100 Coins – $1.15</div>
-      <div class="coin-box" onclick="buyCoins(300)">300 Coins – $3.45</div>
-      <div class="coin-box" onclick="buyCoins(1000)">1000 Coins – $11.50</div>
+    <div class="card" id="coinsSection" style="display: none;">
+      <h2>Select Coins</h2>
+      <p>Choose a bundle or pick <strong>Custom</strong> to enter any amount.</p>
+
+      <div class="coin-grid">
+        <div class="coin-box" onclick="buyCoins(30)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">30 Coins<br><span>$0.34</span></div>
+        <div class="coin-box" onclick="buyCoins(65)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">65 Coins<br><span>$0.74</span></div>
+        <div class="coin-box" onclick="buyCoins(100)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">100 Coins<br><span>$1.15</span></div>
+        <div class="coin-box" onclick="buyCoins(200)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">200 Coins<br><span>$2.30</span></div>
+        <div class="coin-box" onclick="buyCoins(350)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">350 Coins<br><span>$3.99</span></div>
+        <div class="coin-box" onclick="buyCoins(700)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">700 Coins<br><span>$7.99</span></div>
+        <div class="coin-box" onclick="buyCoins(1000)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">1000 Coins<br><span>$11.99</span></div>
+        <div class="coin-box" onclick="buyCoins(2000)"><img src="https://i.ibb.co/pr0Ww3nZ/image-1.png">2000 Coins<br><span>$23.98</span></div>
+      </div>
 
       <!-- Custom Input -->
       <div class="custom-section">
-        <input type="number" id="customCoins" placeholder="Custom coins">
+        <h3>Custom</h3>
+        <input type="number" id="customCoins" placeholder="Enter your own amount">
         <button onclick="buyCustomCoins()">Buy</button>
       </div>
+    </div>
+
+    <!-- User Info -->
+    <div class="card" id="userInfo" style="display: none;">
+      <h2>User Info</h2>
+      <p><strong>Username:</strong> <span id="displayUsername"></span></p>
+      <p><strong>Coin Balance:</strong> <span id="coinBalance">0</span></p>
     </div>
   </div>
 
